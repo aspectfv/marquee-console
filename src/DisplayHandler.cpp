@@ -9,7 +9,6 @@ void DisplayHandler::run() {
 
     while (system_context_ref.is_running) {
         if (system_context_ref.marquee_state.get_active()) {
-            std::lock_guard<std::mutex> lock(system_context_ref.stdout_mutex);
             std::cout << "\033[s"      // save cursor pos
                       << "\033[1;1H"   // move cursor top left
                       << marquee_logic_ref.get_next_frame() // draw marquee
@@ -26,15 +25,7 @@ void DisplayHandler::run() {
             }
         }
 
-        if (!msg.empty()) {
-            std::lock_guard<std::mutex> lock(system_context_ref.stdout_mutex);
-            std::cout << "\n" << msg << "\nCommand > " << std::flush;
-        } else {
-             std::lock_guard<std::mutex> lock(system_context_ref.prompt_mutex);
-             if (system_context_ref.prompt_display_buffer.empty() && !system_context_ref.is_running) {
-                std::cout << "\nCommand > " << std::flush;
-             }
-        }
+        if (!msg.empty()) std::cout << "\n" << msg << "\nCommand > " << std::flush;
 
         std::this_thread::sleep_for(std::chrono::milliseconds(refresh_rate_ms));
     }

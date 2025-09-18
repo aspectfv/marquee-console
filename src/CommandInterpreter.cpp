@@ -29,8 +29,7 @@ void CommandInterpreter::process_next_command() {
     } else if (command == "set_text") {
         std::string text;
         std::getline(ss, text);
-        if (!text.empty() && text[0] == ' ') text.erase(0, 1);
-        
+        if (!text.empty() && text[0] == ' ') text.erase(0, 1); // remove leading space
         system_context_ref.marquee_state.set_text(text);
         msg = "Marquee text set to '" + text + "'.";
     } else if (command == "set_speed") {
