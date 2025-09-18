@@ -19,12 +19,12 @@ int main() {
     std::thread keyboard_thread(&KeyboardHandler::run, &keyboard_handler);
     std::thread display_thread(&DisplayHandler::run, &display_handler);
 
+    std::cout << "Command > " << std::flush;
+
     while (context.is_running) {
         command_interpreter.process_next_command();
         std::this_thread::sleep_for(std::chrono::milliseconds(refresh_rate_ms));
     }
-
-    if (context.is_running == false) std::cout << "Command > exit" << std::endl;
 
     if (keyboard_thread.joinable()) keyboard_thread.join();
     if (display_thread.joinable()) display_thread.join();

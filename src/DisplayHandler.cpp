@@ -21,7 +21,7 @@ void DisplayHandler::run() {
 
             if (!msg.empty()) {
                 std::cout << msg << std::endl;
-                std::cout << "Command > " << std::endl;
+                std::cout << "Command > " << std::flush;
             }
         }
         
