@@ -27,6 +27,7 @@ void DisplayHandler::run() {
 
         if (!msg.empty()) std::cout << "\n" << msg << "\nCommand > " << std::flush;
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(refresh_rate_ms));
+        int speed = system_context_ref.marquee_state.get_text_ms();
+        std::this_thread::sleep_for(std::chrono::milliseconds(speed));
     }
 }

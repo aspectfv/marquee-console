@@ -5,7 +5,6 @@
 class DisplayHandler {
     SystemContext& system_context_ref;
     MarqueeLogic& marquee_logic_ref;
-    const int refresh_rate_ms = 50;
     
 public:
     DisplayHandler(SystemContext& context, MarqueeLogic& logic);
