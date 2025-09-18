@@ -9,7 +9,7 @@ class MarqueeState {
     std::mutex mutex;
 
 public: 
-    MarqueeState() : text("Hello World!"), text_ms(0), is_active(false) {}
+    MarqueeState() : text("Welcome to CSOPESY!"), text_ms(50), is_active(false) {}
     MarqueeState(const std::string& text, int text_ms, bool is_active);
     MarqueeState get();
     void setText(const std::string& newText);

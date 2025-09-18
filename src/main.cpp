@@ -1,8 +1,10 @@
 #include <iostream>
 #include "SystemContext.hpp"
+#include "KeyboardHandler.hpp"
 
 int main() {
     SystemContext context;
-    std::cout << "Hello, World!" << std::endl;
+    KeyboardHandler keyboard_handler(context);
+    keyboard_handler.run();
     return 0;
 }

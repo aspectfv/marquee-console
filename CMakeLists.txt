@@ -11,4 +11,5 @@ add_executable(OSEmulator
     src/main.cpp
     src/CommandQueue.cpp
     src/MarqueeState.cpp
+    src/KeyboardHandler.cpp
 )
