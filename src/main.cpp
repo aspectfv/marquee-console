@@ -2,12 +2,16 @@
 #include "SystemContext.hpp"
 #include "KeyboardHandler.hpp"
 #include "CommandInterpreter.hpp"
+#include "MarqueeLogic.hpp"
 #include <thread>
+
 
 int main() {
     SystemContext context;
+    
     KeyboardHandler keyboard_handler(context);
     CommandInterpreter command_interpreter(context);
+    MarqueeLogic marquee_logic{context};
 
     std::thread keyboard_thread([&]() {
         keyboard_handler.run();
