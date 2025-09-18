@@ -5,6 +5,6 @@ class KeyboardHandler {
     SystemContext& system_context_ref;
 
 public:
-    KeyboardHandler(SystemContext& context) : system_context_ref(context) {}
+    KeyboardHandler(SystemContext& context);
     void run();
 };
