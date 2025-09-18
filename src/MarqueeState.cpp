@@ -8,17 +8,32 @@ MarqueeState MarqueeState::get() {
     return MarqueeState(text, text_ms, is_active);
 }
 
-void MarqueeState::setText(const std::string& newText) {
+std::string MarqueeState::get_text() {
+    std::lock_guard<std::mutex> lock(mutex);
+    return text;
+}
+
+int MarqueeState::get_text_ms() {
+    std::lock_guard<std::mutex> lock(mutex);
+    return text_ms;
+}
+
+bool MarqueeState::get_active() {
+    std::lock_guard<std::mutex> lock(mutex);
+    return is_active;
+}
+
+void MarqueeState::set_text(const std::string& newText) {
     std::lock_guard<std::mutex> lock(mutex);
     text = newText;
 }
 
-void MarqueeState::setActive(bool newActive) {
+void MarqueeState::set_active(bool newActive) {
     std::lock_guard<std::mutex> lock(mutex);
     is_active = newActive;
 }
 
-void MarqueeState::setTextMs(int newTextMs) {
+void MarqueeState::set_text_ms(int newTextMs) {
     std::lock_guard<std::mutex> lock(mutex);
     text_ms = newTextMs;
 }

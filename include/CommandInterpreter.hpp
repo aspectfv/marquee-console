@@ -2,8 +2,7 @@
 #include "SystemContext.hpp"
 
 class CommandInterpreter {
-    SystemContext& system_context;
-    std::string output_message;
+    SystemContext& system_context_ref;
 
 public:
     CommandInterpreter(SystemContext& context);

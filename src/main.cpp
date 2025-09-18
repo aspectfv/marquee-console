@@ -1,10 +1,12 @@
-#include <iostream>
 #include "SystemContext.hpp"
 #include "KeyboardHandler.hpp"
 #include "CommandInterpreter.hpp"
 #include "MarqueeLogic.hpp"
+#include "DisplayHandler.hpp"
+#include <iostream>
 #include <thread>
 
+const int refresh_rate_ms = 10;
 
 int main() {
     SystemContext context;
@@ -12,16 +14,17 @@ int main() {
     KeyboardHandler keyboard_handler(context);
     CommandInterpreter command_interpreter(context);
     MarqueeLogic marquee_logic{context};
+    DisplayHandler display_handler(context, marquee_logic, command_interpreter);
 
-    std::thread keyboard_thread([&]() {
-        keyboard_handler.run();
-    });
+    std::thread keyboard_thread(&KeyboardHandler::run, &keyboard_handler);
+    std::thread display_thread(&DisplayHandler::run, &display_handler);
 
     while (context.is_running) {
         command_interpreter.process_next_command();
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        std::this_thread::sleep_for(std::chrono::milliseconds(refresh_rate_ms));
     }
 
     keyboard_thread.join();
+    display_thread.join();
     return 0;
 }

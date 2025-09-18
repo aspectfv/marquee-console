@@ -3,7 +3,7 @@
 #include "SystemContext.hpp"
 
 class MarqueeLogic {
-    SystemContext& system_context;
+    SystemContext& system_context_ref;
     std::string display_buffer;
 
 public:
