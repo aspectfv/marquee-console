@@ -24,7 +24,9 @@ int main() {
         std::this_thread::sleep_for(std::chrono::milliseconds(refresh_rate_ms));
     }
 
-    keyboard_thread.join();
-    display_thread.join();
+    if (context.is_running == false) std::cout << "Command > exit" << std::endl;
+
+    if (keyboard_thread.joinable()) keyboard_thread.join();
+    if (display_thread.joinable()) display_thread.join();
     return 0;
 }
