@@ -2,7 +2,8 @@
 #include "MarqueeState.hpp"
 #include "CommandQueue.hpp"
 
-#include <atomic> 
+#include <atomic>
+#include <mutex>
 
 struct SystemContext {
     MarqueeState marquee_state;
@@ -10,4 +11,5 @@ struct SystemContext {
     std::atomic<bool> is_running{true};
     std::string prompt_display_buffer{};
     std::mutex prompt_mutex;
+    std::mutex stdout_mutex;
 };

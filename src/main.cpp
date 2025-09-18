@@ -1,3 +1,5 @@
+// src/main.cpp
+
 #include "SystemContext.hpp"
 #include "KeyboardHandler.hpp"
 #include "CommandInterpreter.hpp"
@@ -18,8 +20,6 @@ int main() {
 
     std::thread keyboard_thread(&KeyboardHandler::run, &keyboard_handler);
     std::thread display_thread(&DisplayHandler::run, &display_handler);
-
-    std::cout << "Command > " << std::flush;
 
     while (context.is_running) {
         command_interpreter.process_next_command();
