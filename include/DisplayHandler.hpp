@@ -8,8 +8,6 @@ class DisplayHandler {
     MarqueeLogic& marquee_logic_ref;
     CommandInterpreter& command_interpreter_ref;
     const int refresh_rate_ms = 50;
-
-    void clearScreen();
     
 public:
     DisplayHandler(SystemContext& context, MarqueeLogic& logic, CommandInterpreter& interpreter);
