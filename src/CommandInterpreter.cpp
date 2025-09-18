@@ -22,7 +22,6 @@ void CommandInterpreter::process_next_command() {
 
     } else if (command == "start_marquee") {
         system_context_ref.marquee_state.set_active(true);
-        msg = "Marquee started.";
 
     } else if (command == "stop_marquee") {
         system_context_ref.marquee_state.set_active(false);
