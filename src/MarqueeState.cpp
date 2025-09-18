@@ -1,6 +1,7 @@
 #include "MarqueeState.hpp"
 
-MarqueeState::MarqueeState(std::string text, int text_ms, bool is_active) : text(std::move(text)), text_ms(text_ms), is_active(is_active) {}
+MarqueeState::MarqueeState(const std::string& text, int text_ms, bool is_active)
+    : text(text), text_ms(text_ms), is_active(is_active) {}
 
 MarqueeState MarqueeState::get() {
     std::lock_guard<std::mutex> lock(mutex);
