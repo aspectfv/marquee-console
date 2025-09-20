@@ -10,7 +10,7 @@ class MarqueeState {
     bool is_active;
 
 public: 
-    MarqueeState() : text("Welcome to CSOPESY!"), text_ms(50), is_active(false) {}
+    MarqueeState();
     MarqueeState(const std::string& text, int text_ms, bool is_active);
     MarqueeState get();
     std::string get_text();
