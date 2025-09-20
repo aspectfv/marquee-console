@@ -6,5 +6,5 @@ KeyboardHandler::KeyboardHandler(SystemContext& context) : system_context_ref(co
 
 void KeyboardHandler::run() {
     std::string input;
-    if (std::getline(std::cin, input) && !input.empty()) system_context_ref.command_queue.push(input);
+    if (std::getline(std::cin, input)) system_context_ref.command_queue.push(input);
 }
