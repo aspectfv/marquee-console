@@ -13,7 +13,7 @@ std::string MarqueeLogic::get_next_frame() {
 
     while (loop_text.length() < view_width + text.length()) loop_text += padded_text;
 
-    std::string frame = loop_text.substr(scroll_position, view_width);
+    std::string frame = loop_text.substr(scroll_position % loop_text.length(), view_width);
     scroll_position = (scroll_position + 1) % loop_text.length();
 
     return frame;

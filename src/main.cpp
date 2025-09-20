@@ -15,18 +15,17 @@ int main() {
     
     KeyboardHandler keyboard_handler(context);
     CommandInterpreter command_interpreter(context);
-    MarqueeLogic marquee_logic{context};
+    MarqueeLogic marquee_logic(context);
     DisplayHandler display_handler(context, marquee_logic);
 
-    std::thread keyboard_thread(&KeyboardHandler::run, &keyboard_handler);
     std::thread display_thread(&DisplayHandler::run, &display_handler);
 
     while (context.is_running) {
+        keyboard_handler.run();
         command_interpreter.process_next_command();
         std::this_thread::sleep_for(std::chrono::milliseconds(refresh_rate_ms));
     }
 
-    if (keyboard_thread.joinable()) keyboard_thread.join();
     if (display_thread.joinable()) display_thread.join();
     return 0;
 }

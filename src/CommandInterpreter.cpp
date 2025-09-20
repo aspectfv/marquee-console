@@ -7,10 +7,12 @@ CommandInterpreter::CommandInterpreter(SystemContext& context) : system_context_
 }
 
 void CommandInterpreter::process_next_command() {
-    std::optional<std::string> command_line_opt = system_context_ref.command_queue.pop();
-    if (!command_line_opt) return;
+    if (system_context_ref.command_queue.empty()) return;
 
-    std::stringstream ss(*command_line_opt);
+    std::string command_line = system_context_ref.command_queue.front();
+    system_context_ref.command_queue.pop();
+
+    std::stringstream ss(command_line);
     std::string command;
     ss >> command;
 

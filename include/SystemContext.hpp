@@ -1,13 +1,13 @@
 #pragma once 
 #include "MarqueeState.hpp"
-#include "CommandQueue.hpp"
 
 #include <atomic>
 #include <mutex>
+#include <queue>
 
 struct SystemContext {
     MarqueeState marquee_state;
-    CommandQueue command_queue;
+    std::queue<std::string> command_queue;
     std::atomic<bool> is_running{true};
     std::string prompt_display_buffer{};
     std::mutex prompt_mutex;

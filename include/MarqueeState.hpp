@@ -4,9 +4,10 @@
 
 class MarqueeState {
     std::string text;
+    std::mutex mutex;
+
     int text_ms;
     bool is_active;
-    std::mutex mutex;
 
 public: 
     MarqueeState() : text("Welcome to CSOPESY!"), text_ms(50), is_active(false) {}

@@ -22,6 +22,7 @@ void DisplayHandler::run() {
             std::lock_guard<std::mutex> lock(system_context_ref.prompt_mutex);
             if (!system_context_ref.prompt_display_buffer.empty()) {
                 msg = std::move(system_context_ref.prompt_display_buffer);
+                system_context_ref.prompt_display_buffer.clear();
             }
         }
 
@@ -30,4 +31,6 @@ void DisplayHandler::run() {
         int speed = system_context_ref.marquee_state.get_text_ms();
         std::this_thread::sleep_for(std::chrono::milliseconds(speed));
     }
+
+    std::cout << "\n" << "Exiting application..." << std::endl;
 }
