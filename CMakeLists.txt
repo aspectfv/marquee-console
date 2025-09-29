@@ -14,4 +14,7 @@ add_executable(OSEmulator
     src/CommandInterpreter.cpp
     src/MarqueeLogic.cpp
     src/DisplayHandler.cpp
+    src/AsciiArtMapper.cpp
 )
+
+file(COPY art DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

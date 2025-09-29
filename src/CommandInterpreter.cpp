@@ -1,4 +1,5 @@
 #include "CommandInterpreter.hpp"
+#include "AsciiArtMapper.hpp"
 
 #include <sstream>
 
@@ -38,21 +39,21 @@ void CommandInterpreter::process_next_command() {
 }
 
 void CommandInterpreter::initialize_commands() {
-    commands["help"] = [](const std::string& args) -> std::string {
+    commands["help"] = [](const std::string& _) -> std::string {
         return "Commands: help, exit, start_marquee, stop_marquee, set_text <text>, set_speed <ms>";
     };
 
-    commands["exit"] = [this](const std::string& args) -> std::string {
+    commands["exit"] = [this](const std::string& _) -> std::string {
         system_context_ref.is_running = false;
         return "Exiting application...";
     };
 
-    commands["start_marquee"] = [this](const std::string& args) -> std::string {
+    commands["start_marquee"] = [this](const std::string& _) -> std::string {
         system_context_ref.marquee_state.set_active(true);
         return "Marquee started.";
     };
 
-    commands["stop_marquee"] = [this](const std::string& args) -> std::string {
+    commands["stop_marquee"] = [this](const std::string& _) -> std::string {
         system_context_ref.marquee_state.set_active(false);
         return "Marquee stopped.";
     };
@@ -62,8 +63,10 @@ void CommandInterpreter::initialize_commands() {
 
         if (!text.empty() && text[0] == ' ') text.erase(0, 1);
         if (text.empty()) return "Error: No text provided for set_text.";
-        
-        system_context_ref.marquee_state.set_text(text);
+
+        std::string ascii_art = AsciiArtMapper::to_ascii_art(text);
+
+        system_context_ref.marquee_state.set_text(ascii_art);
         return "Marquee text set to '" + text + "'.";
     };
 
