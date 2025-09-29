@@ -11,7 +11,7 @@ std::string MarqueeLogic::get_next_frame() {
 
     if (text.empty()) return "";
 
-    // Split the text into lines
+    // split text into lines
     std::vector<std::string> lines;
     std::istringstream text_stream(text);
     std::string line;
@@ -21,7 +21,7 @@ std::string MarqueeLogic::get_next_frame() {
 
     if (lines.empty()) return "";
 
-    // Find the width of the longest line in the ASCII art
+    // find width of longest line in ascii art
     size_t text_width = 0;
     for (const auto& l : lines) {
         text_width = std::max(text_width, l.length());
@@ -33,18 +33,18 @@ std::string MarqueeLogic::get_next_frame() {
     std::ostringstream result_frame;
     for (size_t i = 0; i < lines.size(); ++i) {
         std::string current_line = lines[i];
-        // Pad the current line to ensure all lines have the same length
+        // pad current line to ensure all lines have same length
         current_line.append(text_width - current_line.length(), ' ');
 
         std::string padded_line = current_line + separator;
         
-        // Create a long string to scroll through by repeating the padded line
+        // create long string to scroll through by repeating the padded line
         std::string loop_line = padded_line;
         while (loop_line.length() < view_width + padded_width) {
             loop_line += padded_line;
         }
 
-        // Get the portion of the line for the current frame
+        // get portion of line for current frame
         std::string frame_part = loop_line.substr(scroll_position % padded_width, view_width);
         result_frame << frame_part;
         if (i < lines.size() - 1) {
@@ -52,7 +52,7 @@ std::string MarqueeLogic::get_next_frame() {
         }
     }
 
-    // Increment scroll position for the next frame
+    // increment scroll position for next frame
     scroll_position++;
 
     return result_frame.str();

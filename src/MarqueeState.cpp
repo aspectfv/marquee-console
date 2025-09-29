@@ -1,6 +1,7 @@
 #include "MarqueeState.hpp"
+#include "AsciiArtMapper.hpp"
 
-MarqueeState::MarqueeState() : text("Welcome to CSOPESY!"), text_ms(50), is_active(false) {}
+MarqueeState::MarqueeState() : text(AsciiArtMapper::to_ascii_art("Welcome to CSOPESY!")), text_ms(50), is_active(false) {}
 
 MarqueeState::MarqueeState(const std::string& text, int text_ms, bool is_active)
     : text(text), text_ms(text_ms), is_active(is_active) {}

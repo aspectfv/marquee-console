@@ -1,11 +1,8 @@
-// src/main.cpp
-
 #include "SystemContext.hpp"
 #include "KeyboardHandler.hpp"
 #include "CommandInterpreter.hpp"
 #include "MarqueeLogic.hpp"
 #include "DisplayHandler.hpp"
-#include <iostream>
 #include <thread>
 
 const int refresh_rate_ms = 10;
