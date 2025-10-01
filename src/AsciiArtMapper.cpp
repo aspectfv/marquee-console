@@ -8,6 +8,15 @@ std::string AsciiArtMapper::to_ascii_art(const std::string& text) {
     std::vector<std::string> lines;
 
     for (char c : text) {
+        if (c == ' ') {
+            // Add space between words
+            if (!lines.empty()) {
+                for (auto& line : lines) {
+                    line += "      ";// 6 spaces for space character
+                }
+            }
+            continue;
+        }
         std::ifstream file(std::string("art/") + c + ".txt");
         if (!file) continue;
 
