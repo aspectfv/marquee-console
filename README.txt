@@ -11,3 +11,7 @@
 - navigate to build directory `cd build`
 - run `cmake --build .` to compile the code
 - run the executable './OSEmulator' to see the output
+
+# dependencies
+- latest version of CMake
+- C++17 or higher
